@@ -55,9 +55,12 @@ public class SecurityConfig {
 
                 .requestMatchers(HttpMethod.PUT, "/api/applications/*/status")
                 .hasRole("RECRUITER")
+
                 .requestMatchers(HttpMethod.POST, "/api/applications")
                 .hasRole("CANDIDATE")
-                .requestMatchers(HttpMethod.POST, "/api/candidate-profile/resume").hasRole("CANDIDATE")
+
+                .requestMatchers(HttpMethod.POST, "/api/candidate-profile/resume")
+                .hasRole("CANDIDATE")
 
                 .requestMatchers(
                     HttpMethod.GET,
@@ -76,7 +79,11 @@ public class SecurityConfig {
                     "/api/applications/*"
                 )
                 .hasAnyRole("CANDIDATE", "RECRUITER")
-                .requestMatchers(HttpMethod.GET, "/api/candidate-profile/resume/*")
+
+                .requestMatchers(
+                    HttpMethod.GET,
+                    "/api/candidate-profile/resume/*"
+                )
                 .hasAnyRole("CANDIDATE", "RECRUITER")
 
                 .anyRequest().authenticated()
@@ -96,7 +103,10 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-            List.of("http://localhost:5173")
+            List.of(
+                "http://localhost:5173",
+                "https://jobhub-gilt.vercel.app"
+            )
         );
 
         configuration.setAllowedMethods(
