@@ -30,6 +30,13 @@ public class CorsFilter implements Filter {
         HttpServletResponse response =
                 (HttpServletResponse) servletResponse;
 
+        System.out.println(
+                "CUSTOM CORS FILTER HIT: "
+                + request.getMethod()
+                + " "
+                + request.getRequestURI()
+        );
+
         String origin = request.getHeader("Origin");
 
         if ("https://jobhub-gilt.vercel.app".equals(origin)
