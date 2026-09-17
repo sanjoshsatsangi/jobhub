@@ -104,19 +104,25 @@ public class SecurityConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(
-            List.of("https://jobhub-gilt.vercel.app")
+        configuration.setAllowedOriginPatterns(
+            List.of(
+                "http://localhost:5173",
+                "https://jobhub-gilt.vercel.app"
+            )
         );
 
         configuration.setAllowedMethods(
-            List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
+            List.of(
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "OPTIONS"
+            )
         );
 
         configuration.setAllowedHeaders(
-            List.of(
-                "Authorization",
-                "Content-Type"
-            )
+            List.of("*")
         );
 
         configuration.setAllowCredentials(true);
@@ -124,7 +130,10 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
 
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration(
+            "/**",
+            configuration
+        );
 
         return source;
     }
