@@ -32,6 +32,9 @@ public class SecurityConfig {
 
             .authorizeHttpRequests(auth -> auth
 
+                .requestMatchers(HttpMethod.OPTIONS, "/**")
+                .permitAll()
+
                 .requestMatchers(HttpMethod.POST, "/api/users")
                 .permitAll()
 
