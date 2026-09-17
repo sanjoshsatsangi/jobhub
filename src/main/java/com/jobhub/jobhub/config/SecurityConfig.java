@@ -12,9 +12,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final CorsFilter corsFilter;
 
-    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+    public SecurityConfig(
+            JwtAuthenticationFilter jwtAuthenticationFilter,
+            CorsFilter corsFilter) {
+
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.corsFilter = corsFilter;
     }
 
     @Bean
@@ -83,6 +88,11 @@ public class SecurityConfig {
                 .hasAnyRole("CANDIDATE", "RECRUITER")
 
                 .anyRequest().authenticated()
+            )
+
+            .addFilterBefore(
+                corsFilter,
+                UsernamePasswordAuthenticationFilter.class
             )
 
             .addFilterBefore(
