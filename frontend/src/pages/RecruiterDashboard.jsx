@@ -4,6 +4,9 @@ import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import { api } from "../services/api";
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:8080/api";
+
 function RecruiterDashboard() {
   const { user, logout, token } = useAuth();
   const navigate = useNavigate();
@@ -62,7 +65,7 @@ function RecruiterDashboard() {
   const loadCompanies = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8080/api/companies",
+        `${API_BASE_URL}/companies`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -92,7 +95,7 @@ function RecruiterDashboard() {
 
       for (const currentJob of jobsData) {
         const response = await fetch(
-          `http://localhost:8080/api/applications/job/${currentJob.id}`,
+          `${API_BASE_URL}/applications/job/${currentJob.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -118,7 +121,7 @@ function RecruiterDashboard() {
   const loadJobs = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8080/api/jobs",
+        `${API_BASE_URL}/jobs`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -206,7 +209,7 @@ function RecruiterDashboard() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/api/companies",
+        `${API_BASE_URL}/companies`,
         {
           method: "POST",
           headers: {
@@ -248,7 +251,7 @@ function RecruiterDashboard() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/jobs?companyId=${job.companyId}`,
+        `${API_BASE_URL}/jobs?companyId=${job.companyId}`,
         {
           method: "POST",
           headers: {
@@ -327,7 +330,7 @@ function RecruiterDashboard() {
   const handleEditJob = async (jobId, updatedJob) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/jobs/${jobId}`,
+        `${API_BASE_URL}/jobs/${jobId}`,
         {
           method: "PUT",
           headers: {
@@ -362,7 +365,7 @@ function RecruiterDashboard() {
   const handleDeleteJob = async (jobId) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/jobs/${jobId}`,
+        `${API_BASE_URL}/jobs/${jobId}`,
         {
           method: "DELETE",
           headers: {

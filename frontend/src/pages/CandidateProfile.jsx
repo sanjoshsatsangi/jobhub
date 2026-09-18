@@ -4,6 +4,9 @@ import { api } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:8080/api";
+
 function CandidateProfile() {
   const { user, token } = useAuth();
   const navigate = useNavigate();
@@ -132,7 +135,7 @@ function CandidateProfile() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/api/candidate-profile/resume",
+        `${API_BASE_URL}/candidate-profile/resume`,
         {
           method: "POST",
           headers: {
