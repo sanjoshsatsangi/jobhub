@@ -31,6 +31,8 @@ public class DebugCorsFilter implements Filter {
             FilterChain filterChain)
             throws IOException, ServletException {
 
+        System.out.println("DEBUG-CORS: filter version 2 is running");
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
 
         String origin = request.getHeader("Origin");
