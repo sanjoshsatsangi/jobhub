@@ -10,8 +10,6 @@ JobHub is a full-stack job recruitment platform designed to connect candidates a
 
 **Frontend:** https://jobhub-gilt.vercel.app/
 
-**Backend API:** https://jobhub-production-bf86.up.railway.app/
-
 **GitHub Repository:** https://github.com/sanjoshsatsangi/jobhub
 
 ---
